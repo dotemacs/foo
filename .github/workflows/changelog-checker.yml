@@ -1,0 +1,26 @@
+name: Test Changelog Checker
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  models: read
+
+jobs:
+  check-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check and Suggest Changelog
+        uses: dotemacs/changelog-checker@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          model: 'gpt-4o-mini'
