@@ -24,3 +24,4 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           model: 'gpt-4o-mini'
+          break-build: true
